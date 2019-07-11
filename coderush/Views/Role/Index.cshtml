@@ -1,0 +1,102 @@
+﻿@model List<string>
+
+@{
+    ViewData["Title"] = "Role";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewData["Title"]
+        </h1>
+        <p>
+            @await Html.PartialAsync(PartialView.StatusMessage, TempData[StaticString.StatusMessage])
+        </p>
+
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">List of role</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                            title="Collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table id="grid" class="table table-striped" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th width="100%">Role Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <label class="label label-success">@item</label>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <!-- /.box-body -->
+        </div>
+
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+
+
+@section Styles{
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/adminlte/components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+}
+
+
+@section Scripts{
+
+
+    <!-- DataTables -->
+    <script src="~/adminlte/components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/adminlte/components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+    <!-- page script -->
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#grid').DataTable({
+                lengthChange: false,
+                info: false,
+                searching: true,
+                dom: 'lrtip',
+                scrollX: false,
+                pageLength: 5,
+            });
+
+        });
+
+    </script>
+
+}
+
+

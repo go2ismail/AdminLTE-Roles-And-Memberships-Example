@@ -1,0 +1,50 @@
+﻿@page
+@model ErrorModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> @ViewData["Title"] </title>
+    <link rel="shortcut icon" href="~/assets/images/favicon.png" type="image/x-icon" />
+    <!-- ================== APP CSS START ================== -->
+    <link rel="stylesheet" href="~/assets/css/style.css" />
+    <!-- ================== APP CSS END ================== -->
+</head>
+<body>
+    <div class="error-page d-flex align-items-center bg-info">
+        <div class="col-lg-7 mx-auto text-white">
+            <div class="row text-center">
+                <div class="col-12">
+                    <h1 class="display-1 mb-0 text-white">500</h1>
+                </div>
+                <div class="col-12">
+                    <h2>SORRY!</h2>
+                    <h3 class="font-weight-300">Internal server error!</h3>
+                    @if (Model.ShowRequestId)
+                    {
+                        <p>
+                            <strong>Request ID:</strong> <code>@Model.RequestId</code>
+                        </p>
+                    }
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12 text-center mt-xl-2">
+                    <a class="text-white font-weight-500" href="/Identity/Account/Manage/Index">Back to home</a>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12 mt-xl-2">
+                    <p class="text-white font-weight-500 text-center">Copyright © 2019 All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

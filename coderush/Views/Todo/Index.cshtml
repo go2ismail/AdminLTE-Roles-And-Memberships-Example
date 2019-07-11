@@ -1,0 +1,104 @@
+﻿@model List<Todo>
+@{
+    ViewData["Title"] = "Todo";
+}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewData["Title"]
+        </h1>
+        <p>
+            @await Html.PartialAsync(PartialView.StatusMessage, TempData[StaticString.StatusMessage])
+        </p>
+
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">List of todo item</h3>
+                <div class="box-tools pull-right">
+                    <a href="/Todo/Form" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table id="grid" class="table table-striped" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th width="5%">Edit</th>
+                                <th width="5%">Delete</th>
+                                <th width="60%">Todo Item</th>
+                                <th width="30%">Is Done</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <a href="/Todo/Form/@item.TodoId"><i class="fa fa-edit"></i></a>
+                                    </td>
+                                    <td>
+                                        <a href="/Todo/Delete/@item.TodoId"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                    <td><span style="text-decoration-line:@(item.IsDone ? "line-through" : "none")">@item.TodoItem</span></td>
+                                    <td>
+                                        <input type="checkbox" class="flat-red" @(item.IsDone ? "checked" : "") onclick="return false;">                                       
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <!-- /.box-body -->
+        </div>
+
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+
+@section Styles{
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/adminlte/components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+}
+
+
+@section Scripts{
+
+
+    <!-- DataTables -->
+    <script src="~/adminlte/components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/adminlte/components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+    <!-- page script -->
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#grid').DataTable({
+                lengthChange: false,
+                info: false,
+                searching: true,
+                dom: 'lrtip',
+                scrollX: false,
+                pageLength: 5,
+            });
+
+        });
+
+    </script>
+
+}

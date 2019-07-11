@@ -1,0 +1,84 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IdentityUser
+
+@{
+    ViewData["Title"] = "Change Profile";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewData["Title"]
+        </h1>
+        <p>
+            @await Html.PartialAsync(PartialView.StatusMessage, TempData[StaticString.StatusMessage])
+        </p>
+
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <form asp-controller="Membership" asp-action="SubmitChangeProfile" method="post">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Change member profile</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                                title="Collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <label asp-for="UserName"></label>
+                        <input asp-for="UserName" class="form-control" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber"></label>
+                        <input asp-for="PhoneNumber" class="form-control" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="EmailConfirmed" type="checkbox" class="flat-red" />
+                        <label> Active</label>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <a href="/Membership/Index" class="btn btn-default">Back</a>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                <!-- /.box-footer-->
+            </div>
+        </form>
+
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+@section Styles{
+
+}
+
+
+@section Scripts{   
+
+    <partial name="_ValidationScriptsPartial" />
+}
+
+

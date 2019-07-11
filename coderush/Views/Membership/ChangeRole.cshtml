@@ -1,0 +1,105 @@
+﻿@model ChangeRoles
+@{
+    ViewData["Title"] = "Change Role";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewData["Title"]
+        </h1>
+        <p>
+            @await Html.PartialAsync(PartialView.StatusMessage, TempData[StaticString.StatusMessage])
+        </p>
+
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <form asp-controller="Membership" asp-action="SubmitChangeRole" method="post">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Change member roles</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                                title="Collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <label asp-for="UserName"></label>
+                        <input asp-for="UserName" class="form-control" disabled />
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th width="60%">Role Name</th>
+                                    <th width="40%">Is Role Registered</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label class="label label-success">Todo</label>
+                                    </td>
+                                    <td>
+                                        <input class="flat-red" asp-for="IsTodoRegistered">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="label label-success">Membership</label>
+                                    </td>
+                                    <td>
+                                        <input class="flat-red" asp-for="IsMembershipRegistered">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="label label-success">Role</label>
+                                    </td>
+                                    <td>
+                                        <input class="flat-red" asp-for="IsRoleRegistered">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <a href="/Membership/Index" class="btn btn-default">Back</a>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                <!-- /.box-footer-->
+            </div>
+        </form>
+
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+@section Styles{
+
+}
+
+
+@section Scripts{
+
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+
